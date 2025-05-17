@@ -1,0 +1,137 @@
+{
+    "forms": [
+        {
+            "url": "https://app.coolify.io/login",
+            "action": "/login",
+            "method": "POST",
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "hidden",
+                    "required": false,
+                    "id": ""
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "required": true,
+                    "id": "iw0g488g8og4880kwsc8sgww"
+                },
+                {
+                    "name": "password",
+                    "type": "password",
+                    "required": true,
+                    "id": "l0c80kgs8ggsk8wg00gcowgg"
+                }
+            ]
+        },
+        {
+            "url": "https://app.coolify.io/forgot-password",
+            "action": "/forgot-password",
+            "method": "POST",
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "hidden",
+                    "required": false,
+                    "id": ""
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "required": true,
+                    "id": "ccks08ckwgskos04wcwo84k0"
+                }
+            ]
+        },
+        {
+            "url": "https://app.coolify.io/sitemap.xml",
+            "action": "/login",
+            "method": "POST",
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "hidden",
+                    "required": false,
+                    "id": ""
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "required": true,
+                    "id": "g848ok80oc448oo0ko84880g"
+                },
+                {
+                    "name": "password",
+                    "type": "password",
+                    "required": true,
+                    "id": "g0w0k04scogc40wcgcgg80ww"
+                }
+            ]
+        },
+        {
+            "url": "https://app.coolify.io/register",
+            "action": "/register",
+            "method": "POST",
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "hidden",
+                    "required": false,
+                    "id": ""
+                },
+                {
+                    "name": "name",
+                    "type": "text",
+                    "required": true,
+                    "id": "name"
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "required": true,
+                    "id": "email"
+                },
+                {
+                    "name": "password",
+                    "type": "password",
+                    "required": true,
+                    "id": "password"
+                },
+                {
+                    "name": "password_confirmation",
+                    "type": "password",
+                    "required": true,
+                    "id": "password_confirmation"
+                }
+            ]
+        },
+        {
+            "url": "https://app.coolify.io/",
+            "action": "/login",
+            "method": "POST",
+            "inputs": [
+                {
+                    "name": "_token",
+                    "type": "hidden",
+                    "required": false,
+                    "id": ""
+                },
+                {
+                    "name": "email",
+                    "type": "email",
+                    "required": true,
+                    "id": "e0cgoggogwkwwkckgwskok8c"
+                },
+                {
+                    "name": "password",
+                    "type": "password",
+                    "required": true,
+                    "id": "mg8gs0g0gwk88oogs0go48wc"
+                }
+            ]
+        }
+    ],
+    "total_endpoints": 11,
+    "total_forms": 5
+}
