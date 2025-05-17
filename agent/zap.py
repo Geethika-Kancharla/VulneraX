@@ -14,7 +14,7 @@ class SecurityScanner:
     def __init__(self, target_url, output_dir="scan_results"):
         self.target_url = target_url
         self.output_dir = output_dir
-        self.discovered_endpoints = {}  # Changed to dict to store endpoint details
+        self.discovered_endpoints = {}  
         self.subdomains = set()
         self.forms = []
         self.attack_surfaces = []
@@ -289,7 +289,7 @@ class SecurityScanner:
 
 def main():
     # Example usage
-    target_url = "https://app.coolify.io/login"  # Replace with your target
+    target_url = "https://target.com"  
     scanner = SecurityScanner(target_url)
     scanner.run_scan()
 
