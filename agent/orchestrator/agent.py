@@ -183,7 +183,7 @@ root_agent=SequentialAgent(
                 "If the user provides a target URL, you will use the Recon Agent to perform reconnaissance on that URL. "
                 "If the user provides a list of endpoints, you will use the Payload Agent to generate potential payloads for each endpoint."
                 "If the user provides a list of payloads, you will use the Attack Agent to perform penetration testing attacks on the endpoints using the payloads.",
-    sub_agents=[recon_agent,payload_agent,attack_agent],
+    sub_agents=[recon_agent,payload_agent,attack_agent,strategy_agent],
 )
 
 # def get_weather(city: str) -> Dict:
