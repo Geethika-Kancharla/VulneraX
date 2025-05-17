@@ -1,879 +1,146 @@
 {
     "forms": [
         {
-            "action": "search.php?test=query",
-            "method": "post",
+            "action": "/login",
+            "method": "POST",
             "id": "",
-            "class": [],
+            "class": [
+                "flex",
+                "flex-col",
+                "gap-2"
+            ],
             "inputs": [
                 {
-                    "type": "text",
-                    "name": "searchFor",
+                    "type": "hidden",
+                    "name": "_token",
                     "id": "",
                     "required": false,
                     "placeholder": "",
-                    "value": "",
+                    "value": "5QuCsYNffibYtrsXjmnPk4eGMGTZaMW81EZhaU6A",
                     "tag": "input"
                 },
                 {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "/secured/newuser.php",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "uuname",
-                    "id": "",
-                    "required": false,
+                    "type": "email",
+                    "name": "email",
+                    "id": "x08gkssoc448ccgg0ksog08c",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
                 },
                 {
                     "type": "password",
-                    "name": "upass",
+                    "name": "password",
+                    "id": "qc0wo84cwkg0sko44g8g4ss8",
+                    "required": true,
+                    "placeholder": "",
+                    "value": "",
+                    "tag": "input"
+                }
+            ]
+        },
+        {
+            "action": "/login",
+            "method": "POST",
+            "id": "",
+            "class": [
+                "flex",
+                "flex-col",
+                "gap-2"
+            ],
+            "inputs": [
+                {
+                    "type": "hidden",
+                    "name": "_token",
                     "id": "",
                     "required": false,
+                    "placeholder": "",
+                    "value": "QOlszpb05cv8oJDjaBHPsSfYDv1ndIN1xqS14Rbf",
+                    "tag": "input"
+                },
+                {
+                    "type": "email",
+                    "name": "email",
+                    "id": "doo8wkk4woogk04gooscgc0g",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
                 },
                 {
                     "type": "password",
-                    "name": "upass2",
-                    "id": "",
-                    "required": false,
+                    "name": "password",
+                    "id": "cwk0s8g888o4ww0owg8cwgs8",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "text",
-                    "name": "urname",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "text",
-                    "name": "ucc",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "text",
-                    "name": "uemail",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "text",
-                    "name": "uphone",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "text",
-                    "name": "uaddress",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "textarea"
-                },
-                {
-                    "type": "submit",
-                    "name": "signup",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "signup",
                     "tag": "input"
                 }
             ]
         },
         {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "cart.php",
+            "action": "/forgot-password",
             "method": "POST",
             "id": "",
-            "class": [],
+            "class": [
+                "flex",
+                "flex-col",
+                "gap-2"
+            ],
             "inputs": [
                 {
                     "type": "hidden",
-                    "name": "price",
+                    "name": "_token",
                     "id": "",
                     "required": false,
                     "placeholder": "",
-                    "value": "460",
+                    "value": "uSDANcP8B8G7LlIdtW3zXICNGiEL67MqhQSqfeHu",
                     "tag": "input"
                 },
                 {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "5",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
+                    "type": "email",
+                    "name": "email",
+                    "id": "u8gswgw88cs4g8oksgkcwk0k",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
                 }
             ]
         },
         {
-            "action": "cart.php",
+            "action": "/login",
             "method": "POST",
             "id": "",
-            "class": [],
+            "class": [
+                "flex",
+                "flex-col",
+                "gap-2"
+            ],
             "inputs": [
                 {
                     "type": "hidden",
-                    "name": "price",
+                    "name": "_token",
                     "id": "",
                     "required": false,
                     "placeholder": "",
-                    "value": "1000",
+                    "value": "7wIgxF1TDq810lNZ67FOJeMEmtHvMthwaZxRHCRX",
                     "tag": "input"
                 },
                 {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "4",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "cart.php",
-            "method": "POST",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "hidden",
-                    "name": "price",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "15000",
-                    "tag": "input"
-                },
-                {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "7",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "cart.php",
-            "method": "POST",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "hidden",
-                    "name": "price",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "10000",
-                    "tag": "input"
-                },
-                {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "6",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "cart.php",
-            "method": "POST",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "hidden",
-                    "name": "price",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "500",
-                    "tag": "input"
-                },
-                {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "1",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "cart.php",
-            "method": "POST",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "hidden",
-                    "name": "price",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "986",
-                    "tag": "input"
-                },
-                {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "3",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "cart.php",
-            "method": "POST",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "hidden",
-                    "name": "price",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "800",
-                    "tag": "input"
-                },
-                {
-                    "type": "hidden",
-                    "name": "addcart",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "2",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add this picture to cart",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "userinfo.php",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "uname",
-                    "id": "",
-                    "required": false,
+                    "type": "email",
+                    "name": "email",
+                    "id": "e8ksc4wkkkkg0sg8csk8884k",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
                 },
                 {
                     "type": "password",
-                    "name": "pass",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "login",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "params.php?p=valid&pp=12",
-            "method": "get",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "submit",
-                    "name": "aaaa/",
-                    "id": "",
-                    "required": false,
+                    "name": "password",
+                    "id": "jwk80w8o0ckogwwososw0skg",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
@@ -881,305 +148,58 @@
             ]
         },
         {
-            "action": "search.php?test=query",
-            "method": "post",
+            "action": "/register",
+            "method": "POST",
             "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "",
-            "method": "post",
-            "id": "",
-            "class": [],
+            "class": [
+                "flex",
+                "flex-col",
+                "gap-2"
+            ],
             "inputs": [
                 {
                     "type": "hidden",
+                    "name": "_token",
+                    "id": "",
+                    "required": false,
+                    "placeholder": "",
+                    "value": "oiN6md7GWlW0IcvxTLTi77wLTj1Oz6l81XJ5qQod",
+                    "tag": "input"
+                },
+                {
+                    "type": "text",
                     "name": "name",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "anonymous user",
-                    "tag": "input"
-                },
-                {
-                    "type": "text",
-                    "name": "text",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "textarea"
-                },
-                {
-                    "type": "submit",
-                    "name": "submit",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "add message",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
+                    "id": "name",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
                 },
                 {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "userinfo.php",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "uname",
-                    "id": "",
-                    "required": false,
+                    "type": "email",
+                    "name": "email",
+                    "id": "email",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
                 },
                 {
                     "type": "password",
-                    "name": "pass",
-                    "id": "",
-                    "required": false,
+                    "name": "password",
+                    "id": "password",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
                     "tag": "input"
                 },
                 {
-                    "type": "submit",
-                    "name": "",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "login",
-                    "tag": "input"
-                }
-            ]
-        },
-        {
-            "action": "search.php?test=query",
-            "method": "post",
-            "id": "",
-            "class": [],
-            "inputs": [
-                {
-                    "type": "text",
-                    "name": "searchFor",
-                    "id": "",
-                    "required": false,
+                    "type": "password",
+                    "name": "password_confirmation",
+                    "id": "password_confirmation",
+                    "required": true,
                     "placeholder": "",
                     "value": "",
-                    "tag": "input"
-                },
-                {
-                    "type": "submit",
-                    "name": "goButton",
-                    "id": "",
-                    "required": false,
-                    "placeholder": "",
-                    "value": "go",
                     "tag": "input"
                 }
             ]
