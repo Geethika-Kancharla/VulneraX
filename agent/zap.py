@@ -20,14 +20,14 @@ class SecurityScanner:
         self.attack_surfaces = []
         
         # Configure logging
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler(f'{output_dir}/scan.log'),
-                logging.StreamHandler()
-            ]
-        )
+        # logging.basicConfig(
+        #     level=logging.INFO,
+        #     format='%(asctime)s - %(levelname)s - %(message)s',
+        #     handlers=[
+        #         logging.FileHandler(f'{output_dir}/scan.log'),
+        #         logging.StreamHandler()
+        #     ]
+        # )
         self.logger = logging.getLogger(__name__)
         
         # Initialize ZAP API
