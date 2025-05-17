@@ -80,8 +80,8 @@ def run_security_scan(target_url: str) -> Dict:
     print(f"--- Tool: run_security_scan called for target URL: {target_url} ---")
     scanner = SecurityScanner(target_url)
     detailed_endpoints = scanner.run_scan()
-    # input_path = r"C:\Users\com\Documents\Geethika Projects\Ave\agent\scan_results\endpoints.json"
-    # output_path = r"C:\Users\com\Documents\Geethika Projects\Ave\agent\scan_results\output.json"
+    # input_path = "/Users/yuktha/Desktop/maheshbabu/example/agent/scan_results/endpoints.json"
+    # output_path = "/Users/yuktha/Desktop/maheshbabu/example/agent/scan_results/output.json"
     # enhanced_scanner = EnhancedSecurityScanner(input_path, output_path)
     # formatted_endpoints=enhanced_scanner.scan()
     # Format endpoint data in the requested format
