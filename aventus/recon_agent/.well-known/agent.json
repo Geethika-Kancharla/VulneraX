@@ -1,0 +1,4 @@
+{
+  "name": "recon_agent",
+  "description": "Agent performing security reconnaissance on target URLs."
+}
