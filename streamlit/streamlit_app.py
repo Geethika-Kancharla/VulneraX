@@ -7,6 +7,8 @@ from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from io import BytesIO
+import markdown
+from bs4 import BeautifulSoup
 
 # Set page config with dark theme
 st.set_page_config(
@@ -14,6 +16,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+# Initialize session state for browser opening
+if 'browser_opened' not in st.session_state:
+    st.session_state.browser_opened = False
 
 # Custom CSS for dark mode styling
 st.markdown("""
@@ -115,52 +121,46 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-def load_report():
+def load_report(file_path):
     try:
-        with open(r'C:\Users\Alfiya Fatima\code\aventus\VulneraX\output.txt', 'r') as file:
+        with open(file_path, 'r') as file:
             return file.read()
     except FileNotFoundError:
-        st.error("output.txt file not found. Please make sure the file exists.")
+        st.error(f"{os.path.basename(file_path)} file not found. Please make sure the file exists.")
         return None
     except Exception as e:
         st.error(f"Error reading file: {str(e)}")
         return None
 
-def format_report_content(text):
-    # Replace the website URL with vulnerable.com
-    text = text.replace('https://vulnerable-me.vercel.app', 'https://vulnerable.com')
-    
-    # Split the text into lines
-    lines = text.split('\n')
-    formatted_lines = []
-    
-    for line in lines:
-        # Format headers
-        if line.strip().endswith(':'):
-            formatted_lines.append(f"**{line}**")
-        # Format vulnerability types
-        elif any(vuln in line for vuln in ['SQL Injection:', 'Cross-Site Scripting (XSS):', 'Path Traversal/Local File Inclusion (LFI):']):
-            formatted_lines.append(f"**{line}**")
-        # Format payloads
-        elif line.strip().startswith('Payload:'):
-            formatted_lines.append(f"`{line}`")
-        # Format reasons
-        elif line.strip().startswith('Reason:'):
-            formatted_lines.append(f"*{line}*")
-        # Format recommendations
-        elif line.strip().startswith('Change') or line.strip().startswith('Implement') or line.strip().startswith('Add') or line.strip().startswith('Consider'):
-            formatted_lines.append(f"• {line}")
-        else:
-            formatted_lines.append(line)
-    
-    return '\n'.join(formatted_lines)
+def markdown_to_html(text):
+    # Convert markdown to HTML
+    html = markdown.markdown(text)
+    # Parse HTML to get clean text
+    soup = BeautifulSoup(html, 'html.parser')
+    return soup.get_text()
 
 def create_pdf_report(text):
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter)
     styles = getSampleStyleSheet()
     
-    # Create custom styles
+    # Use existing styles and modify them
+    title_style = styles['Title']
+    title_style.fontSize = 24
+    title_style.spaceAfter = 30
+    title_style.textColor = colors.HexColor('#8ab4f8')
+    
+    heading1_style = styles['Heading1']
+    heading1_style.fontSize = 20
+    heading1_style.spaceAfter = 20
+    heading1_style.textColor = colors.HexColor('#8ab4f8')
+    
+    heading2_style = styles['Heading2']
+    heading2_style.fontSize = 16
+    heading2_style.spaceAfter = 15
+    heading2_style.textColor = colors.HexColor('#8ab4f8')
+    
+    # Create custom styles that don't exist
     styles.add(ParagraphStyle(
         name='Vulnerability',
         parent=styles['Heading2'],
@@ -182,18 +182,25 @@ def create_pdf_report(text):
     
     for line in lines:
         if line.strip():
-            if line.strip().endswith(':'):
-                story.append(Paragraph(line, styles['Heading2']))
+            # Convert markdown to clean text
+            clean_text = markdown_to_html(line)
+            
+            if line.startswith('## '):
+                story.append(Paragraph(clean_text, title_style))
+            elif line.startswith('**') and line.endswith('**'):
+                story.append(Paragraph(clean_text, heading2_style))
             elif any(vuln in line for vuln in ['SQL Injection:', 'Cross-Site Scripting (XSS):', 'Path Traversal/Local File Inclusion (LFI):']):
-                story.append(Paragraph(line, styles['Vulnerability']))
+                story.append(Paragraph(clean_text, styles['Vulnerability']))
             elif line.strip().startswith('Payload:'):
-                story.append(Paragraph(line, styles['Code']))
-            elif line.strip().startswith('Reason:'):
-                story.append(Paragraph(line, styles['Italic']))
+                story.append(Paragraph(clean_text, styles['Code']))
+            elif line.strip().startswith('Result:'):
+                story.append(Paragraph(clean_text, styles['Italic']))
             elif line.strip().startswith('Change') or line.strip().startswith('Implement') or line.strip().startswith('Add') or line.strip().startswith('Consider'):
-                story.append(Paragraph(f"• {line}", styles['Recommendation']))
+                story.append(Paragraph(f"• {clean_text}", styles['Recommendation']))
+            elif line.strip().startswith('* '):
+                story.append(Paragraph(f"• {clean_text[2:]}", styles['Normal']))
             else:
-                story.append(Paragraph(line, styles['Normal']))
+                story.append(Paragraph(clean_text, styles['Normal']))
             story.append(Spacer(1, 6))
     
     # Build PDF
@@ -206,27 +213,45 @@ def main():
     st.markdown('<div class="animated-heading">VulneraX Security Scanner</div>', unsafe_allow_html=True)
     
     # Show Report Button
-    if st.button("🔍 Open Security Report", key="show_security_report"):
+    if st.button("🔍 Scan Now", key="show_security_report"):
         # Open localhost:8000
         webbrowser.open('http://localhost:8000')
         
-        # Load and display report
-        report_text = load_report()
-        if report_text:
-            # Format and display the report content
-            formatted_report = format_report_content(report_text)
-            st.markdown(formatted_report)
+        # Load and display reports
+        report1_path = os.path.join(os.path.dirname(__file__), '..', 'agent', 'reports', 'attack_report.txt')
+        report2_path = os.path.join(os.path.dirname(__file__), '..', 'agent', 'reports', 'attack_report2.txt')
+        
+        report1_text = load_report(report1_path)
+        report2_text = load_report(report2_path)
+        
+        if report1_text and report2_text:
+            # Display the reports content using markdown
+            st.markdown("### Initial Security Assessment")
+            st.markdown(report1_text)
             
-            # Create PDF
-            pdf_data = create_pdf_report(report_text)
+            st.markdown("### Updated Security Assessment")
+            st.markdown(report2_text)
             
-            # Download PDF button
-            st.download_button(
-                label="Download PDF Report",
-                data=pdf_data,
-                file_name=f"vulnerax_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
-                mime="application/pdf"
-            )
+            # Create PDFs
+            pdf1_data = create_pdf_report(report1_text)
+            pdf2_data = create_pdf_report(report2_text)
+            
+            # Download buttons
+            col1, col2 = st.columns(2)
+            with col1:
+                st.download_button(
+                    label="Download Initial Assessment PDF",
+                    data=pdf1_data,
+                    file_name=f"vulnerax_initial_assessment_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+                    mime="application/pdf"
+                )
+            with col2:
+                st.download_button(
+                    label="Download Updated Assessment PDF",
+                    data=pdf2_data,
+                    file_name=f"vulnerax_updated_assessment_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+                    mime="application/pdf"
+                )
 
 if __name__ == "__main__":
     main()
