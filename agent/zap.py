@@ -191,10 +191,10 @@ class SecurityScanner:
                 })
             
             # Save detailed results
-            self.save_results("endpoints.json", {
-                'endpoints': self.discovered_endpoints,
-                'attack_surfaces': self.attack_surfaces
-            })
+            # self.save_results("endpoints.json", {
+            #     'endpoints': self.discovered_endpoints,
+            #     'attack_surfaces': self.attack_surfaces
+            # })
             
             self.logger.info(f"{Fore.GREEN}Endpoint discovery completed. Found {len(self.discovered_endpoints)} endpoints and {len(self.attack_surfaces)} potential vulnerabilities{Style.RESET_ALL}")
             

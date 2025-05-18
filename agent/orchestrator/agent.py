@@ -9,10 +9,31 @@ import json
 import subprocess
 import shlex
 from pydantic import BaseModel
+import time
+from google.genai.errors import ClientError
 
 class ScanInput(BaseModel):
     target_url: str
+    report_content: str
+    filename: str
 from typing import List, Dict
+
+def save_report_to_file(content: str, filename: str):
+    """
+    Save a report to a file.
+    
+    Args:
+        content (str): The content of the report
+        filename (str): The filename to save the report to
+    """
+    try:
+        with open(f'/Users/yuktha/Documents/VulneraX/agent/reports/{filename}', 'w') as file:
+            file.write(content)
+        print(f"Report saved successfully to {filename}")
+        return {"success": True, "message": f"Report saved to {filename}"}
+    except Exception as e:
+        print(f"Error saving report: {str(e)}")
+        return {"success": False, "error": str(e)}
 
 def execute(curl: List[str]) -> List[Dict]:
     """
@@ -85,7 +106,7 @@ def run_security_scan(target_url: str) -> Dict:
         return {"error": "No target_url provided."}
     print(f"--- Tool: run_security_scan called for target URL: {target_url} ---")
     scanner=SecurityScanner(target_url)
-    detailed_endpoints = scanner.run_scan()
+    # detailed_endpoints = scanner.run_scan()
     with open('/Users/yuktha/Documents/VulneraX/agent/scan_results/structure.json', 'r') as file:
         data = json.load(file)
     # input_path = "/Users/yuktha/Desktop/maheshbabu/example/agent/scan_results/endpoints.json"
@@ -104,13 +125,10 @@ def run_security_scan(target_url: str) -> Dict:
 recon_agent = Agent(
         name="recon_agent",
         model="gemini-2.0-flash-exp",
-        description='''You are the Recon Agent. Your ONLY task is to perform reconnaissance on a given target URL.
-Extract the URL from user input (such as "Scan http://example.com") and call the function 
-`run_security_scan` with the URL as the value for `target_url`. 
-If parsing fails, ask the user for a valid URL.''',
+        description='''You are the Recon Agent. Your ONLY task is to perform reconnaissance on a given target URL.''',
         tools=[run_security_scan], 
-        instruction="You are the Recon Agent. Your ONLY task is to perform reconnaissance on a given target URL. "
-        # No sub-agents needed for this example
+        instruction='''Extract the URL from user input (such as "Scan http://example.com") and call the function 
+`run_security_scan` with the URL as the value for `target_url`. '''
     )
 
 
@@ -182,6 +200,15 @@ report_agent1 = Agent(
     model="gemini-2.0-flash-exp",
     description='''You are the Report Agent. Your ONLY task is to generate a report based on the results recon_agent.
     ''',
+    tools=[save_report_to_file],
+    instruction="""
+    1. Generate a comprehensive security report based on the recon_agent results
+    2. After creating your report, you MUST save it by calling save_report_to_file with these parameters:
+       - report_content: Your complete report text
+       - filename: "attack_report.txt"
+    Example function call: save_report_to_file(report_content="Your report text here", filename="attack_report.txt")
+    """
+
 )
 report_agent2=Agent(
     name="report_agent2",
@@ -193,58 +220,65 @@ report_agent3=Agent(
     name="report_agent3",
     model="gemini-2.0-flash-exp",
     description='''You are the Report Agent. Your ONLY task is to generate a report based on the results attack_agent.
-    give all the attacks that were successfull and give the payload that caused the attack. give quick remediation fixes to prevent this agent
     ''',
-)
-root_agent=SequentialAgent(
+    tools=[save_report_to_file],
+    instruction="""
+    1. Generate a comprehensive security report based on the attack results
+    2. Give all the attacks that were successful and give the payload that caused the attack. Give quick remediation fixes to prevent this agent
+    3. After creating your report, you MUST save it by calling save_report_to_file with these parameters:
+       - report_content: Your complete report text
+       - filename: "attack_report2.txt"
+    Example function call: save_report_to_file(report_content="Your report text here", filename="attack_report2.txt")
+    """
 
+)
+# root_agent=SequentialAgent(
+
+#     name="sequential_agent",
+#     description="You are the Sequential Agent. Your task is to manage and coordinate the execution of other agents in a sequential manner. "
+#                 "You will delegate tasks to the Recon Agent as needed."
+#                 "If the user provides a target URL, you will use the Recon Agent to perform reconnaissance on that URL. "
+#                 "If the user provides a list of endpoints, you will use the Payload Agent to generate potential payloads for each endpoint."
+#                 "If the user provides a list of payloads, you will use the Attack Agent to perform penetration testing attacks on the endpoints using the payloads.",
+#     sub_agents=[recon_agent,report_agent1,payload_agent,attack_agent,report_agent3]
+# )
+
+def handle_api_execution(func, *args, **kwargs):
+    """
+    Wrapper function to handle API rate limit errors with retry logic.
+    
+    Args:
+        func: The function to execute
+        *args, **kwargs: Arguments to pass to the function
+    
+    Returns:
+        The result of the function call
+    """
+    try:
+        return func(*args, **kwargs)
+    except ClientError as e:
+        if "RESOURCE_EXHAUSTED" in str(e) or "429" in str(e):
+            print(f"API quota exceeded: {str(e)}")
+            print("Waiting for 30 seconds to reset quota...")
+            time.sleep(30)  # Sleep for 30 seconds
+            print("Retrying operation...")
+            return func(*args, **kwargs)  # Retry once after waiting
+        else:
+            # If it's another type of error, re-raise it
+            raise
+
+# Modify your SequentialAgent to use this wrapper
+class RateLimitAwareSequentialAgent(SequentialAgent):
+    def process(self, *args, **kwargs):
+        return handle_api_execution(super().process, *args, **kwargs)
+
+# Replace your root_agent with the rate-limit aware version
+root_agent = RateLimitAwareSequentialAgent(
     name="sequential_agent",
     description="You are the Sequential Agent. Your task is to manage and coordinate the execution of other agents in a sequential manner. "
                 "You will delegate tasks to the Recon Agent as needed."
                 "If the user provides a target URL, you will use the Recon Agent to perform reconnaissance on that URL. "
                 "If the user provides a list of endpoints, you will use the Payload Agent to generate potential payloads for each endpoint."
                 "If the user provides a list of payloads, you will use the Attack Agent to perform penetration testing attacks on the endpoints using the payloads.",
-    sub_agents=[recon_agent,report_agent1,payload_agent,attack_agent,report_agent3]
+    sub_agents=[recon_agent, report_agent1, payload_agent, attack_agent, report_agent3]
 )
-
-# def get_weather(city: str) -> Dict:
-
-#     # Best Practice: Log tool execution for easier debugging
-#     print(f"--- Tool: get_weather called for city: {city} ---")
-#     city_normalized = city.lower().replace(" ", "") # Basic input normalization
-
-#     # Mock weather data for simplicity (matching Step 1 structure)
-#     mock_weather_db = {
-#         "newyork": {"status": "success", "report": "The weather in New York is sunny with a temperature of 25°C."},
-#         "london": {"status": "success", "report": "It's cloudy in London with a temperature of 15°C."},
-#         "tokyo": {"status": "success", "report": "Tokyo is experiencing light rain and a temperature of 18°C."},
-#         "chicago": {"status": "success", "report": "The weather in Chicago is sunny with a temperature of 25°C."},
-#         "toronto": {"status": "success", "report": "It's partly cloudy in Toronto with a temperature of 30°C."},
-#         "chennai": {"status": "success", "report": "It's rainy in Chennai with a temperature of 15°C."},
-#  }
-
-#     # Best Practice: Handle potential errors gracefully within the tool
-#     if city_normalized in mock_weather_db:
-#         return mock_weather_db[city_normalized]
-#     else:
-#         return {"status": "error", "error_message": f"Sorry, I don't have weather information for '{city}'."}
-
-# greeting_agent = Agent(
-#         model="gemini-2.0-flash-exp",
-#             name="greeting_agent",
-#             instruction="You are the Greeting Agent. Your ONLY task is to provide a friendly greeting to the user. " "Do not engage in any other conversation or tasks.",
-#             # Crucial for delegation: Clear description of capability
-#             description="Handles simple greetings and hellos",
-            
-#  )
-
-# farewell_agent = Agent(
-#           model="gemini-2.0-flash-exp",
-#             name="farewell_agent",
-#             instruction="You are the Farewell Agent. Your ONLY task is to provide a polite goodbye message. "
-#                         "Do not perform any other actions.",
-#             # Crucial for delegation: Clear description of capability
-#             description="Handles simple farewells and goodbyes",
-            
-#  )
-
